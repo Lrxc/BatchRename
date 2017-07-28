@@ -1,0 +1,4 @@
+<resources>
+    <string name="app_name">批量改名工具</string>
+    <string name="shuoming">说明：手机根目录下新建文件夹 001 将要修改的文件或文件夹复制到 001下即可</string>
+</resources>
