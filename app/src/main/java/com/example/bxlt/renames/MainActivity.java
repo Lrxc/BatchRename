@@ -9,6 +9,7 @@ import android.view.View;
 import android.widget.EditText;
 import android.widget.Toast;
 
+import java.io.CharConversionException;
 import java.io.File;
 
 import io.reactivex.Observable;
@@ -56,13 +57,18 @@ public class MainActivity extends AppCompatActivity {
     }
 
     private void initRxjava() {
+
         show = ProgressDialog.show(this, "", "改名中...");
         Observable.create(new ObservableOnSubscribe<String>() {
             @Override
             public void subscribe(@NonNull ObservableEmitter<String> e) throws Exception {
-                File file = new File(Environment.getExternalStorageDirectory() + "/Music");
-                getAllFiles(file);
-                e.onComplete();
+                File file = new File(Environment.getExternalStorageDirectory() + "/001");
+                if (file.exists()) {
+                    getAllFiles(file);
+                    e.onComplete();
+                } else {
+                    e.onError(new CharConversionException("请先复制到001目录"));
+                }
             }
         }).subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
@@ -75,7 +81,7 @@ public class MainActivity extends AppCompatActivity {
                     @Override
                     public void onError(@NonNull Throwable e) {
                         show.dismiss();
-                        Toast.makeText(MainActivity.this, "改名失败", Toast.LENGTH_SHORT).show();
+                        Toast.makeText(MainActivity.this, e.getMessage(), Toast.LENGTH_SHORT).show();
                     }
 
                     @Override

@@ -2,6 +2,7 @@
 <project version="4">
   <component name="ProjectModuleManager">
     <modules>
+      <module fileurl="file://$PROJECT_DIR$/BatchRename.iml" filepath="$PROJECT_DIR$/BatchRename.iml" />
       <module fileurl="file://$PROJECT_DIR$/ReNames.iml" filepath="$PROJECT_DIR$/ReNames.iml" />
       <module fileurl="file://$PROJECT_DIR$/app/app.iml" filepath="$PROJECT_DIR$/app/app.iml" />
     </modules>
